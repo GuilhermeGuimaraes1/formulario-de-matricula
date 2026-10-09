@@ -67,4 +67,32 @@ input {
     border: 1px solid var(--stroke-default);
     color: var(--text-primary);
   }
+
+  /* Com esse seletor enquando o capo não tiver preenchido ele vai aplicar essas instruções, como colocamso requerid e o e-mail não está preenchido ele fica com essa borda*/
+  &:invalid {
+    border: 0.125rem solid var(--semantic-error);
+  }
+
+  /* input que tenha um small como irmão*/
+  &+small {
+    font: var(--text-sm);
+    color: #78716C;
+    display: inline-block; /*por padrão small e inline, para o margin funcionar precisa colocar*/
+    margin-top: .25rem;
+  }
+
+  &[required]+.error {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    font: var(--text-sm);
+    color: var(--semantic-error);
+    margin-top: .25rem;
+  }
+
+  /*Quando o e-mail for validado sai a linha vermelha
+  :not(:focus) existe para evitar que a mensagem fique piscando enquanto a pessoa digita.*/
+  &:not(:focus):valid+.error {
+    display: none;
+  }
 }
